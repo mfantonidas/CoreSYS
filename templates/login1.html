@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load bootstrap_toolkit %}
+{% load url from future %}
+
+{% block title %}系统登录{% endblock title %}
+
+{% block extra_head %}
+    <link href="{{ STATIC_URL }}css/signin.css" rel="stylesheet">
+{% endblock extra_head %}
+
+{% block content %}
+
+    <div class="container">
+
+        <form class="form-signin" role="form" action="" method="post">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">系统登录</h2>
+            {% if password_is_wrong %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                    <strong>错误!</strong>用户名或密码错误
+                </div>
+            {% endif %}
+
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                    <strong>用户名不能为空</strong>
+                    </div>
+                {% endif %}
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                    <strong>密码不能为空</strong>
+                    </div>
+                {% endif %}
+                <!-- <input type="email" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" class="form-control" placeholder="Password" required> -->
+                <label class="checkbox">
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div> <!-- /container -->
+
+{% endblock content %}
