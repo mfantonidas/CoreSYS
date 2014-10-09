@@ -48,7 +48,9 @@ def login(req):
 def index(req):
     if req.user.is_authenticated():
         user = req.user
-    return render_to_response('index.html',{'user':user,}, context_instance=RequestContext(req))
+        return render_to_response('index.html',{'user':user,}, context_instance=RequestContext(req))
+    else:
+        return login(req)
 
 def logout(req):
     auth.logout(req)
