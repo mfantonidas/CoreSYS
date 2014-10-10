@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'upFile',
     'xadmin',
     'SYS_user',
+    'upFile',
 )
 
 MIDDLEWARE_CLASSES = (
