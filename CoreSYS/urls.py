@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^xadmin/', include(xadmin.site.urls)),
     url(r'core_sys/', include('SYS_user.urls')),
+    url(r'^api/', include('api_auth.urls', namespace='rest_framework'))
 )
