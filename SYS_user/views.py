@@ -44,7 +44,7 @@ def login(req):
         else:
             return render_to_response("login1.html", RequestContext(req, {'form':form,}))
 
-@login_required(login_url='/core_sys/login/')
+@login_required(login_url='/core_user/login/')
 def index(req):
     if req.user.is_authenticated():
         user = req.user
@@ -54,4 +54,4 @@ def index(req):
 
 def logout(req):
     auth.logout(req)
-    return HttpResponseRedirect('/core_sys/login/')
+    return HttpResponseRedirect('/core_user/login/')

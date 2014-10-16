@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^xadmin/', include(xadmin.site.urls)),
-    url(r'core_sys/', include('SYS_user.urls')),
+    url(r'core_user/', include('SYS_user.urls')),
     url(r'api/', include('api_auth.urls', namespace='rest_framework')),
     url(r'ajaxtest/', include('ajaxtest.urls')),
+    url(r'core_file/', include('upFile.urls'), name='core_file'),
 )

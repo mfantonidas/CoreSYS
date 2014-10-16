@@ -2,6 +2,70 @@
 
 {% block title %}上传文件{% endblock %}
 
-{% block side-bar %}
+{% block extra_head %}
+    <link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}bootstrap/css/joywindow.bootstrap.css" rel="stylesheet" type="text/css" />
+{% endblock extra_head %}
 
+{% block side-bar %}
+    <ul class="nav nav-sidebar">
+            <li class="active"><a href="/ajaxtest">ajaxtest</a></li>
+            <li><a href="/core_file/uploadduty">上传文件</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+        </ul>
+{% endblock %}
+
+{% block content_main %}
+    <h1>Ajax test</h1>
+    <form id="form" method="post">
+    {% csrf_token %}
+        <input type="text" id="input" />
+        <input type="button" id="submit" value="Ajaxsubmit" />
+    </form>
+    <div id="show"></div>
+{% endblock %}
+
+{% block bootstrap3_extra_script %}
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap-modalmanager.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/modal.manager.plugin1.0.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/jshow.utils.js"></script>
+
+
+    <!-- you can delete follow resource 如果你不需要拖拽，以下文件可删除 -->
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/jquery.ui.draggable.js"></script>
+    <!-- you can delete follow resource 如果你不需要表单验证，以下文件可删除 -->
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/form.validate.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#show').hide();
+        $('#submit').click(function(){
+        $.ajax({
+            url:'/ajaxtest/input/',
+            type:"POST",
+            data:{input:$("#input").val()},
+                   dataType:"html"
+            }).done(function(msg){
+                $('#show').html(msg).show();
+            }).fail(function(jqXHR,textStatus){
+                alert("rquest failed" +textStatus);
+            });
+        });
+    });
+</script>
 {% endblock %}
