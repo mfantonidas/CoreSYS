@@ -1,3 +1,4 @@
+# coding=utf-8
 from django import forms
 from bootstrap_toolkit.widgets import BootstrapTextInput
 

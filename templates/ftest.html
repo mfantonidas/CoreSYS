@@ -9,8 +9,27 @@
 <h1>register</h1>
 <form method="post" enctype="multipart/form-data" >
 {{uf.as_p}}
-<input type="submit" value="ok"/>
+<a href="#nogo" id="upfile" class="btn  btn-info">很简单的JS点击弹窗</a>
 </form>
 </body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+        $('#show').hide();
+        $('#upfile').click(function(){
+        $.ajax({
+            url:"/ajaxtest/ftest/",
+            type:"POST",
+            data:{input:$("#input").val()},
+                   dataType:"html"
+            }).done(function(msg){
+                $('#show').html(msg).show();
+            }).fail(function(jqXHR,textStatus){
+                alert("rquest failed" +textStatus);
+            });
+        });
+    });
+</script>
+
 </html>
 

@@ -11,3 +11,14 @@ def frametest(req):
 
 def ftest(req):
     return render_to_response('ftest.html', {}, context_instance=RequestContext(req))
+
+def upfile(req):
+    if req.method == 'POST':
+        uf = UpForm(req.POST, req.FILES)
+        if uf.is_valid():
+            return HttpResponse('up ok!')
+
+    else:
+        uf = UpForm()
+
+    return render_to_response('ftest.html', {'uf': uf}, context_instance=RequestContext(req))
